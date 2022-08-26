@@ -26,5 +26,16 @@ function calculate(e){
     e.preventDefault();
 }
 
+function callError(msg){
+    const errorToast = document.createElement('div');
 
+    const cardElement = document.querySelector('.card');
+    const HeadingElement = document.querySelector('.heading');
+
+    errorToast.className = "alert alert-danger";
+    errorToast.textContent = msg;
+
+    cardElement.insertBefore(errorToast,HeadingElement);
+
+}
 
