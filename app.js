@@ -1,4 +1,9 @@
-document.getElementById('loan-form').addEventListener('submit',calculate);
+document.getElementById('loan-form').addEventListener('submit',function(e){
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('results').style.display = 'none';
+    setTimeout(calculate,2000);
+    e.preventDefault();
+});
 
 function calculate(e){
     const amount = document.getElementById('amount');
@@ -16,6 +21,8 @@ function calculate(e){
     const monthly = (principal*x*calcInterest)/(x-1);
 
     if(isFinite(monthly)){
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('results').style.display = 'block';
         monthlyPayment.value = monthly.toFixed(2);
         totalPayment.value = (monthly * calcYears).toFixed(2);
         totalInterest.value = ((monthly * calcYears) - principal).toFixed(2);
@@ -27,6 +34,8 @@ function calculate(e){
 }
 
 function callError(msg){
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('results').style.display = 'none';
     const errorToast = document.createElement('div');
 
     const cardElement = document.querySelector('.card');
@@ -37,7 +46,7 @@ function callError(msg){
 
     cardElement.insertBefore(errorToast,HeadingElement);
    
-    setTimeout(clearToast,3000);
+    setTimeout(clearToast,2000);
 
 }
 
