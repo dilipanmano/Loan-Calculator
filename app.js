@@ -36,6 +36,12 @@ function callError(msg){
     errorToast.textContent = msg;
 
     cardElement.insertBefore(errorToast,HeadingElement);
+   
+    setTimeout(clearToast,3000);
 
+}
+
+function clearToast(){
+    document.querySelector('.alert').remove();
 }
 
